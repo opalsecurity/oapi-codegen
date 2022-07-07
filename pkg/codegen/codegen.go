@@ -282,7 +282,7 @@ func Generate(swagger *openapi3.T, packageName string, opts Options) (string, er
 		fmt.Println(goCode)
 		return "", errors.Wrap(err, "error formatting Go code")
 	}
-	return string(outBytes), nil
+	return strings.TrimSuffix(string(outBytes), "\n"), nil
 }
 
 func GenerateTypeDefinitions(t *template.Template, swagger *openapi3.T, ops []OperationDefinition, excludeSchemas []string) (string, error) {
