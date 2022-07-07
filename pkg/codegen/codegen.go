@@ -575,8 +575,8 @@ func GenerateImports(t *template.Template, externalImports []string, packageName
 	var modulePath string
 	var moduleVersion string
 	if bi, ok := debug.ReadBuildInfo(); ok {
-		modulePath = bi.Main.Path
-		moduleVersion = bi.Main.Version
+		modulePath = "github.com/opalsecurity/oapi-codegen"
+		moduleVersion = bi.GoVersion
 	} else {
 		// Unit tests have ok=false, so we'll just use "unknown" for the
 		// version if we can't read this.
