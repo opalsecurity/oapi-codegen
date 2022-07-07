@@ -808,7 +808,7 @@ func (siw *ServerInterfaceWrapper) {{$opid}}(c *gin.Context) {
   }
   {{end}}
   {{if .IsStyled}}
-  err = runtime.BindStyledParameter("{{.Style}}",{{.Explode}}, "{{.ParamName}}", c.Query("{{.ParamName}}"), &{{$varName}})
+  err = runtime.BindStyledParameter("{{.Style}}",{{.Explode}}, "{{.ParamName}}", c.Param("{{.ParamName}}"), &{{$varName}})
   if err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"msg": fmt.Sprintf("Invalid format for parameter {{.ParamName}}: %s", err)})
     return
@@ -946,6 +946,10 @@ func (siw *ServerInterfaceWrapper) {{$opid}}(c *gin.Context) {
 
   for _, middleware := range siw.HandlerMiddlewares {
     middleware(c)
+  }
+
+  if c.IsAborted() {
+    return
   }
 
   siw.Handler.{{.OperationId}}(c{{genParamNames .PathParams}}{{if .RequiresParamObject}}, params{{end}})
@@ -1288,4 +1292,3 @@ func Parse(t *template.Template) (*template.Template, error) {
 	}
 	return t, nil
 }
-
