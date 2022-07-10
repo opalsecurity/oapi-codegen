@@ -3,7 +3,6 @@ module github.com/deepmap/oapi-codegen
 require (
 	github.com/cyberdelia/templates v0.0.0-20141128023046-ca7fffd4298c
 	github.com/getkin/kin-openapi v0.61.0
-	github.com/gin-gonic/gin v1.7.2 
 	github.com/go-chi/chi/v5 v5.0.0
 	github.com/golangci/lint-1 v0.0.0-20181222135242-d2cdd8c08219
 	github.com/labstack/echo/v4 v4.2.1
@@ -11,7 +10,7 @@ require (
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/pkg/errors v0.8.1
-	github.com/stretchr/testify v1.5.1
+	github.com/stretchr/testify v1.8.0
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad // indirect
 	golang.org/x/net v0.0.0-20210119194325-5f4716e94777 // indirect
 	golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c // indirect

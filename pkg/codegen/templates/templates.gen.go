@@ -944,6 +944,18 @@ func (siw *ServerInterfaceWrapper) {{$opid}}(c *gin.Context) {
     {{end}}
   {{end}}
 
+  // ------------- Reject unknown query parameters -------------
+  acceptableQueryParams := map[string]bool {
+    {{range $paramIdx, $param := .QueryParams}}"{{.ParamName}}": true,
+    {{end}}
+  }
+  for queryParam := range c.Request.URL.Query() {
+    if !acceptableQueryParams[queryParam] {
+      c.JSON(http.StatusBadRequest, gin.H{"msg": fmt.Sprintf("Invalid query parameter: %s", queryParam)})
+      return
+    }
+  }
+
   for _, middleware := range siw.HandlerMiddlewares {
     middleware(c)
   }
